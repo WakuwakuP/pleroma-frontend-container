@@ -1,0 +1,35 @@
+fe.nagi.fan {
+  encode gzip
+
+  handle /api/*||/nodeinfo||/instance/*||/socket/*||/oauth/* {
+    @websockets {
+      header Connection *Upgrade*
+      header Upgrade    websocket
+    }
+    reverse_proxy @websockets https://pl.nagi.fan
+  }
+
+  handle {
+    root * /srv/pl.nagi.fan/pleroma-fe
+    try_files {path} /index.html
+    file_server
+  }
+}
+
+fe.wakuwakup.net {
+  encode gzip
+
+  handle /api/*||/nodeinfo||/instance/*||/socket/*||/oauth/* {
+    @websockets {
+      header Connection *Upgrade*
+      header Upgrade    websocket
+    }
+    reverse_proxy @websockets https://pleroma.wakuwakup.net
+  }
+
+  handle {
+    root * /srv/pleroma.wakuwakup.net/pleroma-fe
+    try_files {path} /index.html
+    file_server
+  }
+}
