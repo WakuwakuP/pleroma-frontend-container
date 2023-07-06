@@ -1,4 +1,4 @@
-fe.nagi.fan {
+deck.nagi.fan {
   encode gzip
 
   @backend {
@@ -16,56 +16,80 @@ fe.nagi.fan {
   }
 
   handle {
-    root * /srv/pl.nagi.fan/pleroma-fe
+    root * /srv/pl.nagi.fan/glitch-lily
     try_files {path} /index.html
     file_server
   }
 }
 
-fe.wakuwakup.net {
-  encode gzip
+# fe.nagi.fan {
+#   encode gzip
 
-  @backend {
-    path_regexp ^/(api|nodeinfo|instance|socket|oauth|favicon.)(.*)
-  }
+#   @backend {
+#     path_regexp ^/(api|nodeinfo|instance|socket|oauth|favicon.)(.*)
+#   }
 
-  handle @backend {
-    reverse_proxy https://pleroma.wakuwakup.net {
-      header_up Host pleroma.wakuwakup.net
-      header_up Origin https://pleroma.wakuwakup.net
-      header_up X-Forwarded-Host pleroma.wakuwakup.net
-      header_up X-Forwarded-Port 443
-      header_up X-Forwarded-Proto https
-    }
-  }
+#   handle @backend {
+#     reverse_proxy https://pl.nagi.fan {
+#       header_up Host pl.nagi.fan
+#       header_up Origin https://pl.nagi.fan
+#       header_up X-Forwarded-Host pl.nagi.fan
+#       header_up X-Forwarded-Port 443
+#       header_up X-Forwarded-Proto https
+#     }
+#   }
 
-  handle {
-    root * /srv/pleroma.wakuwakup.net/pleroma-fe
-    try_files {path} /index.html
-    file_server
-  }
-}
+#   handle {
+#     root * /srv/pl.nagi.fan/pleroma-fe
+#     try_files {path} /index.html
+#     file_server
+#   }
+# }
 
-deck.wakuwakup.net {
-  encode gzip
+# fe.wakuwakup.net {
+#   encode gzip
 
-  @backend {
-    path_regexp ^/(api|nodeinfo|instance|socket|oauth|favicon.)(.*)
-  }
+#   @backend {
+#     path_regexp ^/(api|nodeinfo|instance|socket|oauth|favicon.)(.*)
+#   }
 
-  handle @backend {
-    reverse_proxy https://pleroma.wakuwakup.net {
-      header_up Host pleroma.wakuwakup.net
-      header_up Origin https://pleroma.wakuwakup.net
-      header_up X-Forwarded-Host pleroma.wakuwakup.net
-      header_up X-Forwarded-Port 443
-      header_up X-Forwarded-Proto https
-    }
-  }
+#   handle @backend {
+#     reverse_proxy https://pleroma.wakuwakup.net {
+#       header_up Host pleroma.wakuwakup.net
+#       header_up Origin https://pleroma.wakuwakup.net
+#       header_up X-Forwarded-Host pleroma.wakuwakup.net
+#       header_up X-Forwarded-Port 443
+#       header_up X-Forwarded-Proto https
+#     }
+#   }
 
-  handle {
-    root * /srv/pleroma.wakuwakup.net/glitch-lily
-    try_files {path} /index.html
-    file_server
-  }
-}
+#   handle {
+#     root * /srv/pleroma.wakuwakup.net/pleroma-fe
+#     try_files {path} /index.html
+#     file_server
+#   }
+# }
+
+# deck.wakuwakup.net {
+#   encode gzip
+
+#   @backend {
+#     path_regexp ^/(api|nodeinfo|instance|socket|oauth|favicon.)(.*)
+#   }
+
+#   handle @backend {
+#     reverse_proxy https://pl.nagi.fan {
+#       header_up Host pl.nagi.fan
+#       header_up Origin https://pl.nagi.fan
+#       header_up X-Forwarded-Host pl.nagi.fan
+#       header_up X-Forwarded-Port 443
+#       header_up X-Forwarded-Proto https
+#     }
+#   }
+
+#   handle {
+#     root * /srv/pl.nagi.fan/glitch-lily
+#     try_files {path} /index.html
+#     file_server
+#   }
+# }
