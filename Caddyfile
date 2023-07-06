@@ -46,3 +46,27 @@ fe.wakuwakup.net {
     file_server
   }
 }
+
+deck.wakuwakup.net {
+  encode gzip
+
+  @backend {
+    path_regexp ^/(api|nodeinfo|instance|socket|oauth|favicon.)(.*)
+  }
+
+  handle @backend {
+    reverse_proxy https://pleroma.wakuwakup.net {
+      header_up Host pleroma.wakuwakup.net
+      header_up Origin https://pleroma.wakuwakup.net
+      header_up X-Forwarded-Host pleroma.wakuwakup.net
+      header_up X-Forwarded-Port 443
+      header_up X-Forwarded-Proto https
+    }
+  }
+
+  handle {
+    root * /srv/pleroma.wakuwakup.net/glitch-lily
+    trt_files {path} /index.html
+    file_server
+  }
+}
