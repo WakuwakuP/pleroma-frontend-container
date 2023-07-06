@@ -65,7 +65,7 @@ deck.wakuwakup.net {
 
   handle {
     root * /srv/pleroma.wakuwakup.net/glitch-lily
-    trt_files {path} /index.html
+    try_files {path} /index.html
     file_server
   }
 }
